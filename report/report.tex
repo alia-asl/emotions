@@ -306,7 +306,34 @@
 		\item [$\bullet$]
 		\english{A Transformer Architecture for Stress Detection from ECG\cite{behnam2021}}:\\
 		
+		در این مدل تنها از سیگنال‌های \english{ECG} استفاده شد. در شکل \ref{trans2} ساختار این مدل نمایش داده شده‌است.\\
+		\begin{figure}[h]
+			\includegraphics[width=0.8\textwidth]{trans1.png}
+			\caption{ساختار مدل \cite{behnam2021}}
+			\label{trans2}
+		\end{figure}
+		مدل از 3 بخش تشکیل شده: بخش کانولوشن، بخش ترانسفورمر و بخش کاملا متصل.\\
 		
+		در بخش کانولوشن که هدف آن استخراج ویژگی‌هاست، دو لایه مشابه دارد که هر یک از یک کانولوشن و در ادامه آن تابع فعالساز \english{ReLU} و یک لایه حداکثر فشرده‌ساز\footnote{\english{Max-Pooling}} قرار دارد.\\
+		
+		برای پاس دادن خروجی بخش کانولوشن ابتدا از یک انکودینگ مکانی\footnote{\english{Positional Encoding}} استفاده می‌شود.\\
+		بعد از آن بخش ترانسفورمر قرار دارد که از 4 لایه با ساختار زیر تشکیل می‌شود:\\
+		\begin{enumerate}
+			\item 
+			لایه چندسر خودتوجه\footnote{\english{Multi-Head Self-Attention}}\\
+			
+			\item 
+			لایه \english{dropout} و نرمال‌ساز\\
+			
+			\item 
+			لایه کاملا متصل پیشخور\footnote{\english{feed-forward}}\\
+			
+			\item 
+			و دوباره لایه \english{dropout} و نرمال‌ساز\\
+			
+		\end{enumerate}
+		
+		پس از بخش ترانسفورمر، 3 لایه خطی خواهیم داشت که دو تای اول تابع فعالساز \english{ReLU} و آخری را تابع سیگموید همراهی می‌کند که مسئولیت دسته‌یندی بر عهده آن است.
 	\end{itemize} 
 	\chapter{پیش‌پردازش}
 	در بخش‌های پیش‌رو در مورد کارهای مورد نیاز برای آماده‌سازی داده‌ها برای آموزش مدل‌ها بحث می‌کنیم
